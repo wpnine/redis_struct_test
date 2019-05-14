@@ -26,7 +26,7 @@ func main() {
 
 
 
-
+/**经测试是无效方法，hash无法支持复杂结构**/
 func DoComplexHashStore(conn redis.Conn)  {
 
 	var args = redis.Args{"complex1"}.AddFlat(testComplexStruct)
