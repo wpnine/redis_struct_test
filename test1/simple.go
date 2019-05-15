@@ -5,6 +5,7 @@ import (
 	"bytes"
 	"encoding/gob"
 	"encoding/json"
+	"fmt"
 	"github.com/gomodule/redigo/redis"
 )
 
@@ -56,7 +57,7 @@ func DoGobEncodingStore(conn redis.Conn)  {
 	conn.Do("set","struct2",buffer.Bytes())
 
 	rebytes,_ := redis.Bytes(conn.Do("get","struct2"))
-	//fmt.Println("gob","buffer.buytes:" ,len(buffer.Bytes()))
+	fmt.Println("gob","buffer.buytes:" ,len(buffer.Bytes()))
 
 
 	//进行解码
@@ -74,7 +75,7 @@ func DoJsonEncodingStore(conn redis.Conn)  {
 	conn.Do("set","struct3",datas)
 	//读取数据
 	rebytes,_ := redis.Bytes(conn.Do("get","struct3"))
-	//fmt.Println("gob","json.buytes:" ,len(rebytes))
+	fmt.Println("gob","json.buytes:" ,len(rebytes))
 
 	//json反序列化
 	object := &provider.TestStruct{}
